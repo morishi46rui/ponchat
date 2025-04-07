@@ -1,0 +1,29 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+
+# next.js
+client/.next/
+client/out/
+**/*.css.d.ts*
+
+# misc
+.DS_Store
+tsconfig.tsbuildinfo
+**/$*.ts
+
+# debug
+npm-debug.log*
+
+# local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# server
+server/**/*.db
+server/index.js
+server/upload/

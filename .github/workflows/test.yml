@@ -1,0 +1,27 @@
+name: Test
+
+on: push
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+      - uses: actions/cache@v4
+        id: npm-cache
+        with:
+          path: 'node_modules'
+          key: npm-${{ hashFiles('package-lock.json') }}
+      - run: npm install
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+      - run: npm run lint
+      - run: cp client/.env.example client/.env
+      - run: cp server/.env.example server/.env
+      - run: npm run generate
+      - run: npm run typecheck
+      - run: npm test
