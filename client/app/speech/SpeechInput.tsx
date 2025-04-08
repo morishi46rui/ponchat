@@ -1,28 +1,42 @@
 'use client';
 
+import { Button, Space, Typography } from 'antd';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+
+const { Text, Paragraph } = Typography;
 
 export const SpeechInput: React.FC = () => {
   const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition } =
     useSpeechRecognition();
 
   if (!browserSupportsSpeechRecognition) {
-    return <span>ブラウザが音声認識未対応です</span>;
+    return <Text type="danger">ブラウザが音声認識に対応していません。</Text>;
   }
 
   return (
-    <div id="react-speech-recognition">
-      <p>入力: {listening ? 'on' : 'off'}</p>
-      <button type="button" onClick={() => SpeechRecognition.startListening()}>
-        入力開始
-      </button>
-      <button type="button" onClick={() => SpeechRecognition.stopListening()}>
-        停止
-      </button>
-      <button type="button" onClick={() => resetTranscript()}>
-        リセット
-      </button>
-      <p>{transcript}</p>
+    <div id="react-speech-recognition" style={{ marginTop: '1rem' }}>
+      <Paragraph>
+        <Text strong>入力状態：</Text>
+        <Text type={listening ? 'success' : 'secondary'}>{listening ? '🎧 on' : 'off'}</Text>
+      </Paragraph>
+
+      <Space direction="horizontal" size="middle" wrap>
+        <Button
+          type="primary"
+          onClick={() => SpeechRecognition.startListening({ language: 'ja-JP' })}
+        >
+          入力開始
+        </Button>
+        <Button danger onClick={() => SpeechRecognition.stopListening()}>
+          停止
+        </Button>
+        <Button onClick={() => resetTranscript()}>リセット</Button>
+      </Space>
+
+      <Paragraph style={{ marginTop: '1rem' }}>
+        <Text strong>認識結果：</Text>
+        <Text>{transcript}</Text>
+      </Paragraph>
     </div>
   );
 };

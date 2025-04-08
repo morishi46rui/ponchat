@@ -15,5 +15,8 @@
   },
   "devDependencies": {
     "@types/react-speech-recognition": "^3.9.6"
+  },
+  "dependencies": {
+    "antd": "^5.24.6"
   }
 }
