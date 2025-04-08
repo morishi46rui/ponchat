@@ -61,6 +61,9 @@ export default function Template({ children }: { children: ReactNode }) {
           <Link href={pagesPath.article.$url()} className={styles.nav}>
             Article
           </Link>
+          <Link href={pagesPath.speech.$url()} className={styles.nav}>
+            Speech
+          </Link>
         </div>
         <form
           onSubmit={(e) => {

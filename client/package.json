@@ -12,5 +12,8 @@
     "start": "next start",
     "test": "vitest run",
     "typecheck": "hcm '**/*.module.css' && tsc --pretty --noEmit"
+  },
+  "devDependencies": {
+    "@types/react-speech-recognition": "^3.9.6"
   }
 }
