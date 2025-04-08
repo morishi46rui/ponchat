@@ -23,7 +23,7 @@ export const SpeechInput: React.FC = () => {
       <Space direction="horizontal" size="middle" wrap>
         <Button
           type="primary"
-          onClick={() => SpeechRecognition.startListening({ language: 'ja-JP' })}
+          onClick={() => SpeechRecognition.startListening({ language: 'ja-JP', continuous: true })}
         >
           入力開始
         </Button>
